@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  gap: 41px;
+}
+
+@media screen and (max-width: 582px) {
+  .header {
+    gap: 31px;
+  }
+}

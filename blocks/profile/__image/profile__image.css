@@ -1,0 +1,4 @@
+.profile__image {
+  clip-path: circle(50% at center);
+  max-width: 120px;
+}
