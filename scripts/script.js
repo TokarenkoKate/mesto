@@ -10,8 +10,7 @@ const formElement = popup.querySelector('.form');
 const nameInput = popup.querySelector('.form__input_type_name');
 const jobInput = popup.querySelector('.form__input_type_job');
 
-function openPopup(evt) {
-  evt.preventDefault();
+function openPopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   popup.classList.add('popup_opened');
