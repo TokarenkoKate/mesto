@@ -4,7 +4,10 @@
   right: -40px;
   width: 32px;
   height: 32px;
-  cursor: pointer; 
+  cursor: pointer;
+  background: url(./../../../images/close_btn.svg) no-repeat center transparent;
+  border: none;
+  padding: 0;
 }
 
 @media screen and (max-width: 582px) {
@@ -13,5 +16,6 @@
     top: -36px;
     width: 20px;
     height: 20px;
+    background-size: 20px;
   }
 }

@@ -4,10 +4,7 @@
   align-self: center;
   width: 24px;
   height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
+  background: url(./../../../images/edit_btn.svg) no-repeat center transparent;
   border: 1px solid #FFFFFF;
   cursor: pointer;
 }
@@ -17,5 +14,6 @@
   .profile__edit-btn {
     width: 18px;
     height: 18px;
+    background-size: 8px;
   }
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="pages/index.css">
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body>
@@ -17,7 +17,6 @@
         <a href="#" class="logo">
           <img src="./images/logo.svg" alt="Логотип" class="logo__image">
         </a>
-        <div class="header__line"></div>
       </header>
 
       <main class="main">
@@ -26,84 +25,78 @@
           <div class="profile__info">
             <h1 class="profile__author">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
-            <button class="profile__edit-btn page__link-opacity" type="submit">
-              <img src="./images/edit_btn.svg" alt="" class="profile__edit-btn-image">
-            </button>
+            <button class="profile__edit-btn page__link-opacity" type="button"></button>
           </div>
-          <button class="profile__add-btn page__link-opacity">
-            <img src="./images/add_btn.svg" alt="" class="profile__add-btn-image">
-          </button>
+          <button class="profile__add-btn page__link-opacity" type="button"></button>
         </div>
 
-        <div class="popup">
-          <div class="popup__container">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <form action="#" method="post" class="form">
-              <input type="text" class="form__input form__input_type_name" name="form__input_type_name"
-                value="Жак-Ив Кусто" required>
-              <input type="text" class="form__input form__input_type_job" name="form__input_type_job"
-                value="Исследователь океана" required>
-              <button class="form__submit-button">Сохранить</button>
-            </form>
-            <div class="popup__close-button page__link-opacity">
-              <img src="./images/close_btn.svg" alt="" class="popup__close-button-image">
-            </div>
-          </div>
-        </div>
-
-        <section class="cards" aria-label="cards">
-          <div class="card">
+        <ul class="cards">
+          <li class="card">
             <img src="./images/Altai.jpg" alt="Алтай" class="card__image">
             <div class="card__row">
               <h2 class="card__title">Алтай</h2>
-              <button class="card__link"></button>
+              <button class="card__link" type="button"></button>
             </div>
-          </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img src="./images/Baikal.jpg" alt="Байкал" class="card__image">
             <div class="card__row">
               <h2 class="card__title">Байкал</h2>
-              <button class="card__link"></button>
+              <button class="card__link" type="button"></button>
             </div>
-          </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img src="./images/Kamchatka.jpg" alt="Камчатка" class="card__image">
             <div class="card__row">
               <h2 class="card__title">Камчатка</h2>
-              <button class="card__link"></button>
+              <button class="card__link" type="button"></button>
             </div>
-          </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img src="./images/Krasnoyarski_krai.jpg" alt="Красноярский край" class="card__image">
             <div class="card__row">
               <h2 class="card__title">Красноярский край</h2>
-              <button class="card__link"></button>
+              <button class="card__link" type="button"></button>
             </div>
-          </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img src="./images/Olkhon.jpg" alt="Ольхон" class="card__image">
             <div class="card__row">
               <h2 class="card__title">Ольхон</h2>
-              <button class="card__link"></button>
+              <button class="card__link" type="button"></button>
             </div>
-          </div>
-          <div class="card">
+          </li>
+          <li class="card">
             <img src="./images/Sudak.jpg" alt="Судак" class="card__image">
             <div class="card__row">
               <h2 class="card__title">Судак</h2>
-              <button class="card__link"></button>
+              <button class="card__link" type="button"></button>
             </div>
-          </div>
-        </section>
+          </li>
+        </ul>
       </main>
 
       <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p>
       </footer>
 
+      <div class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form action="#" method="post" class="form" name="form">
+            <input type="text" class="form__input form__input_type_name" name="formInputTypeName"
+              value="Жак-Ив Кусто" placeholder="Введите имя:" required>
+            <input type="text" class="form__input form__input_type_job" name="formInputTypeJob"
+              value="Исследователь океана" placeholder="Введите информацию о себе:" required>
+            <button class="form__submit-button" type="submit">Сохранить</button>
+          </form>
+          <button class="popup__close-button page__link-opacity" type="button"></button>
+        </div>
+      </div>
+
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 
 </html>
