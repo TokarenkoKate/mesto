@@ -30,7 +30,7 @@
           <button class="profile__add-btn page__link-opacity" type="button"></button>
         </section>
 
-        <section class="content">
+        <section class="content" aria-label="Карточки">
           <ul class="cards">
           </ul>
         </section>
@@ -43,7 +43,7 @@
       <div class="popup popup_type_edit-profile">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="#" method="post" class="form form_type_edit-profile" name="form">
+          <form action="#" method="post" class="form form_type_edit-profile" name="formTypeEditProfile">
             <input type="text" class="form__input form__input_type_name" name="formInputTypeName" value="Жак-Ив Кусто"
               placeholder="Введите имя:" required>
             <input type="text" class="form__input form__input_type_job" name="formInputTypeJob"
@@ -57,10 +57,10 @@
       <div class="popup popup_type_add-card">
         <div class="popup__container">
           <h2 class="popup__title">Новое место</h2>
-          <form action="#" method="post" class="form form_type_add-card" name="form">
+          <form action="#" method="post" class="form form_type_add-card" name="formTypeAddCard">
             <input type="text" class="form__input form__input_type_place-name" name="formInputTypePlaceName" value=""
               placeholder="Название" required>
-            <input type="text" class="form__input form__input_type_link" name="formInputTypeJob" value=""
+            <input type="text" class="form__input form__input_type_link" name="formInputTypeLink" value=""
               placeholder="Ссылка на картинку" required>
             <button class="form__submit-button" type="submit">Создать</button>
           </form>
@@ -73,10 +73,11 @@
           <img src="" alt="" class="popup__image">
           <p class="popup__image-caption"></p>
           <button class="popup__close-button page__link-opacity" type="button"></button>
-          </figure>
         </div>
       </div>
+
     </div>
+  </div>
 
     <template id="card">
       <li class="card">
@@ -85,10 +86,9 @@
           <h2 class="card__title">ddd</h2>
           <button class="card__like" type="button"></button>
         </div>
-        <button class="card__delete page__link-opacity"></button>
+        <button class="card__delete page__link-opacity" type="button"></button>
       </li>
     </template>
     <script src="./scripts/script.js"></script>
 </body>
-
 </html>
