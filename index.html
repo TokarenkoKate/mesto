@@ -32,48 +32,6 @@
 
         <section class="content">
           <ul class="cards">
-            <li class="card">
-              <img src="./images/Altai.jpg" alt="Алтай" class="card__image">
-              <div class="card__row">
-                <h2 class="card__title">Алтай</h2>
-                <button class="card__link" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/Baikal.jpg" alt="Байкал" class="card__image">
-              <div class="card__row">
-                <h2 class="card__title">Байкал</h2>
-                <button class="card__link" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/Kamchatka.jpg" alt="Камчатка" class="card__image">
-              <div class="card__row">
-                <h2 class="card__title">Камчатка</h2>
-                <button class="card__link" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/Krasnoyarski_krai.jpg" alt="Красноярский край" class="card__image">
-              <div class="card__row">
-                <h2 class="card__title">Красноярский край</h2>
-                <button class="card__link" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/Olkhon.jpg" alt="Ольхон" class="card__image">
-              <div class="card__row">
-                <h2 class="card__title">Ольхон</h2>
-                <button class="card__link" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/Sudak.jpg" alt="Судак" class="card__image">
-              <div class="card__row">
-                <h2 class="card__title">Судак</h2>
-                <button class="card__link" type="button"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
@@ -82,12 +40,12 @@
         <p class="footer__copyright">© 2022 Mesto Russia</p>
       </footer>
 
-      <div class="popup">
+      <div class="popup popup_type_edit-profile">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="#" method="post" class="form" name="form">
-            <input type="text" class="form__input form__input_type_name" name="formInputTypeName"
-              value="Жак-Ив Кусто" placeholder="Введите имя:" required>
+          <form action="#" method="post" class="form form_type_edit-profile" name="form">
+            <input type="text" class="form__input form__input_type_name" name="formInputTypeName" value="Жак-Ив Кусто"
+              placeholder="Введите имя:" required>
             <input type="text" class="form__input form__input_type_job" name="formInputTypeJob"
               value="Исследователь океана" placeholder="Введите информацию о себе:" required>
             <button class="form__submit-button" type="submit">Сохранить</button>
@@ -96,9 +54,41 @@
         </div>
       </div>
 
+      <div class="popup popup_type_add-card">
+        <div class="popup__container">
+          <h2 class="popup__title">Новое место</h2>
+          <form action="#" method="post" class="form form_type_add-card" name="form">
+            <input type="text" class="form__input form__input_type_place-name" name="formInputTypePlaceName" value=""
+              placeholder="Название" required>
+            <input type="text" class="form__input form__input_type_link" name="formInputTypeJob" value=""
+              placeholder="Ссылка на картинку" required>
+            <button class="form__submit-button" type="submit">Создать</button>
+          </form>
+          <button class="popup__close-button page__link-opacity" type="button"></button>
+        </div>
+      </div>
+
+      <div class="popup popup_type_open-image">
+        <div class="popup__image-wrapper">
+          <img src="" alt="" class="popup__image">
+          <p class="popup__image-caption"></p>
+          <button class="popup__close-button page__link-opacity" type="button"></button>
+          </figure>
+        </div>
+      </div>
     </div>
-  </div>
-  <script src="./scripts/script.js"></script>
+
+    <template id="card">
+      <li class="card">
+        <img src="" alt="" class="card__image">
+        <div class="card__row">
+          <h2 class="card__title">ddd</h2>
+          <button class="card__like" type="button"></button>
+        </div>
+        <button class="card__delete page__link-opacity"></button>
+      </li>
+    </template>
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
