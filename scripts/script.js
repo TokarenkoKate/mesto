@@ -1,32 +1,6 @@
 'use strict'
 
 const cardsContainer = document.querySelector('.cards');
-const initialCards = [
-  {
-    name: 'Алтай',
-    link: './images/Altai.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: './images/Baikal.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: './images/Kamchatka.jpg'
-  },
-  {
-    name: 'Красноярский край',
-    link: './images/Krasnoyarski_krai.jpg'
-  },
-  {
-    name: 'Ольхон',
-    link: './images/Olkhon.jpg'
-  },
-  {
-    name: 'Судак',
-    link: './images/Sudak.jpg'
-  },
-];
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__author');
 const profileJob = profile.querySelector('.profile__job');
@@ -66,25 +40,32 @@ function createCard(cardDetails) {
 
 function setListeners(card) {
   const cardLikeButton = card.querySelector('.card__like');
-  cardLikeButton.addEventListener('click', function () {
-    this.classList.toggle('card__like_active');
-  });
+  cardLikeButton.addEventListener('click', toggleActiveClass);
 
   const cardDeleteButton = card.querySelector('.card__delete');
   cardDeleteButton.addEventListener('click', function (evt) {
     evt.target.closest('.card').remove();
   });
 
-  card.querySelector('.card__image').addEventListener('click', function () {
-    popupImageCaption.textContent = this.getAttribute('alt');
-    popupImage.setAttribute('src', this.getAttribute('src'));
-    popupImage.setAttribute('alt', this.getAttribute('alt'));
-    popupOpenImage.classList.add('popup_opened');
+  const cardImage = card.querySelector('.card__image');
+  cardImage.addEventListener('click', function () {
+    fillImagePopup(cardImage);
+    openPopup(popupOpenImage);
   });
   return card;
 }
 
-function formSubmitHandler(evt) {
+function toggleActiveClass() {
+  this.classList.toggle('card__like_active');
+}
+
+function fillImagePopup(image) {
+  popupImageCaption.textContent = image.getAttribute('alt');
+  popupImage.setAttribute('src', image.getAttribute('src'));
+  popupImage.setAttribute('alt', image.getAttribute('alt'));
+}
+
+function submitFormHandler(evt) {
   evt.preventDefault();
   if (evt.target === formEditProfile) {
     profileName.textContent = nameInput.value;
@@ -92,10 +73,9 @@ function formSubmitHandler(evt) {
   }
   if (evt.target === formAddCard) {
     addNewCard(placeNameInput, linkInput);
-    placeNameInput.value = '';
-    linkInput.value = ''; 
+    formAddCard.reset();
   }
-  closePopup(evt);
+  closePopup(evt.target.closest('.popup'));
 }
 
 function addNewCard(name, link) {
@@ -106,29 +86,27 @@ function addNewCard(name, link) {
   cardsContainer.prepend(createCard(addedCard));
 }
 
-function openPopup(evt) {
-  if (evt.target === profileEditButton) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-    popupEdit.classList.add('popup_opened');
-  }
-  if (evt.target === profileAddButton) {
-    popupAddCard.classList.add('popup_opened');
-  }
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
-function closePopup(evt) {
-  if (evt.target.closest('.popup_type_open-image')) {
-    popupImage.setAttribute('src','');
-    popupImage.setAttribute('alt','');
-    popupImageCaption.textContent = '';
-  }
-  evt.target.closest('.popup').classList.remove('popup_opened');
+function fillPopupData() {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 
 showInitialCards(initialCards);
-profileEditButton.addEventListener('click', openPopup);
-profileAddButton.addEventListener('click', openPopup);
-popUpCloseButtons.forEach((button) => button.addEventListener('click', closePopup));
-formEditProfile.addEventListener('submit', formSubmitHandler);
-formAddCard.addEventListener('submit', formSubmitHandler);
+profileEditButton.addEventListener('click', function () {
+  openPopup(popupEdit);
+  fillPopupData();
+});
+profileAddButton.addEventListener('click', () => openPopup(popupAddCard));
+popUpCloseButtons.forEach(function (button) {
+  button.addEventListener('click', () => closePopup(button.closest('.popup')))
+});
+formEditProfile.addEventListener('submit', submitFormHandler);
+formAddCard.addEventListener('submit', submitFormHandler);
