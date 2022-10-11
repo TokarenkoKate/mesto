@@ -43,11 +43,14 @@
       <div class="popup popup_type_edit-profile">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="#" method="post" class="form form_type_edit-profile" name="formTypeEditProfile">
-            <input type="text" class="form__input form__input_type_name" name="formInputTypeName" value="Жак-Ив Кусто"
-              placeholder="Введите имя:" required>
-            <input type="text" class="form__input form__input_type_job" name="formInputTypeJob"
-              value="Исследователь океана" placeholder="Введите информацию о себе:" required>
+          <form action="#" method="post" class="form form_type_edit-profile" name="formTypeEditProfile" novalidate>
+            <input type="text" class="form__input form__input_type_name" name="formInputTypeName" id="name-input"
+              value="Жак-Ив Кусто" placeholder="Введите имя:" minlength="2" maxlength="40" required>
+            <span class="form__input-error name-input-error"></span>
+            <input type="text" class="form__input form__input_type_job" name="formInputTypeJob" id="job-input"
+              value="Исследователь океана" placeholder="Введите информацию о себе:" minlength="2" maxlength="200"
+              required>
+            <span class="form__input-error job-input-error"></span>
             <button class="form__submit-button" type="submit">Сохранить</button>
           </form>
           <button class="popup__close-button page__link-opacity" type="button"></button>
@@ -57,11 +60,13 @@
       <div class="popup popup_type_add-card">
         <div class="popup__container">
           <h2 class="popup__title">Новое место</h2>
-          <form action="#" method="post" class="form form_type_add-card" name="formTypeAddCard">
-            <input type="text" class="form__input form__input_type_place-name" name="formInputTypePlaceName" value=""
-              placeholder="Название" required>
-            <input type="text" class="form__input form__input_type_link" name="formInputTypeLink" value=""
-              placeholder="Ссылка на картинку" required>
+          <form action="#" method="post" class="form form_type_add-card" name="formTypeAddCard" novalidate>
+            <input type="text" class="form__input form__input_type_place-name" name="formInputTypePlaceName"
+              id="place-name-input" value="" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="form__input-error place-name-input-error"></span>
+            <input type="url" class="form__input form__input_type_link" name="formInputTypeLink" id="link-input"
+              value="" placeholder="Ссылка на картинку" required>
+            <span class="form__input-error link-input-error"></span>
             <button class="form__submit-button" type="submit">Создать</button>
           </form>
           <button class="popup__close-button page__link-opacity" type="button"></button>
@@ -79,17 +84,19 @@
     </div>
   </div>
 
-    <template id="card">
-      <li class="card">
-        <img src="#" alt="#" class="card__image">
-        <div class="card__row">
-          <h2 class="card__title">ddd</h2>
-          <button class="card__like" type="button"></button>
-        </div>
-        <button class="card__delete page__link-opacity" type="button"></button>
-      </li>
-    </template>
-    <script src="./scripts/initialCards.js"></script>
-    <script src="./scripts/script.js"></script>
+  <template id="card">
+    <li class="card">
+      <img src="#" alt="#" class="card__image">
+      <div class="card__row">
+        <h2 class="card__title">ddd</h2>
+        <button class="card__like" type="button"></button>
+      </div>
+      <button class="card__delete page__link-opacity" type="button"></button>
+    </li>
+  </template>
+  <script src="./scripts/validate.js"></script>
+  <script src="./scripts/initialCards.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
+
 </html>

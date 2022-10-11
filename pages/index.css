@@ -32,11 +32,11 @@
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_type/form__input_type_job.css);
-@import url(../blocks/form/__input/_type/form__input_type_name.css);
-@import url(../blocks/form/__input/_type/form__input_type_place-name.css);
-@import url(../blocks/form/__input/_type/form__input_type_link.css);
+@import url(../blocks/form/__input/_state/form__input_state_error.css);
+@import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input-error/_active/form__input-error_active.css);
 @import url(../blocks/form/__submit-button/form__submit-button.css);
+@import url(../blocks/form/__submit-button/_disabled/form__submit-button_disabled.css);
 
 @import url(../blocks/cards/cards.css);
 
