@@ -51,7 +51,6 @@ function setListeners(card) {
   cardImage.addEventListener('click', function () {
     fillImagePopup(cardImage);
     openPopup(popupOpenImage);
-    setKeyHandler();
   });
   return card;
 }
@@ -68,7 +67,6 @@ function fillImagePopup(image) {
 
 function submitEditForm(evt) {
   fillProfileFromInput();
-  removeKeyHandeler();
   closePopup(evt.target.closest('.popup'));
 }
 
@@ -79,16 +77,9 @@ function fillProfileFromInput() {
 
 function submitAddForm(evt) {
   addNewCard(placeNameInput, linkInput);
-  formAddCard.reset();
-  removeKeyHandeler();
-  setDisabledButtonState(evt.currentTarget, validationDetails.submitButtonSelector, validationDetails.inactiveButtonClass);
   closePopup(evt.target.closest('.popup'));
-}
-
-function setDisabledButtonState(formElement, submitButtonSelector, inactiveButtonClass) {
-  const button = formElement.querySelector(submitButtonSelector);
-  button.classList.add(inactiveButtonClass);
-  button.setAttribute('disabled', true);
+  setDisabledButtonState(evt.currentTarget, validationDetails.submitButtonSelector, validationDetails.inactiveButtonClass);
+  formAddCard.reset();
 }
 
 function addNewCard(name, link) {
@@ -101,10 +92,12 @@ function addNewCard(name, link) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  setKeyHandler();
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  removeKeyHandeler();
 }
 
 function fillPopupData() {
@@ -117,7 +110,6 @@ function closeWithOverlay() {
   popupList.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
       if (evt.target === evt.currentTarget && evt.button === 0) {
-        removeKeyHandeler();
         closePopup(evt.currentTarget);
       }
     });
@@ -135,7 +127,6 @@ function removeKeyHandeler() {
 function closeWithEsc(evt) {
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
-    document.removeEventListener('keydown', closeWithEsc);
   }
 }
 
@@ -143,15 +134,12 @@ showInitialCards(initialCards);
 profileEditButton.addEventListener('click', () => {
   fillPopupData();
   openPopup(popupEdit);
-  setKeyHandler();
 });
 profileAddButton.addEventListener('click', () => {
   openPopup(popupAddCard);
-  setKeyHandler();
 });
 popUpCloseButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    removeKeyHandeler();
     closePopup(button.closest('.popup'));
   });
 });

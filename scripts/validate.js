@@ -60,6 +60,12 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector, in
   });
 };
 
+const setDisabledButtonState = (formElement, submitButtonSelector, inactiveButtonClass) => {
+  const button = formElement.querySelector(submitButtonSelector);
+  button.classList.add(inactiveButtonClass);
+  button.setAttribute('disabled', true);
+};
+
 const validationDetails = {
   formSelector: '.form',
   inputSelector: '.form__input',
