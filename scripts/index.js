@@ -3,6 +3,9 @@ import { FormValidator } from './FormValidator.js';
 import { initialCards } from './initialCards.js';
 import { validationDetails } from './validationDetails.js';
 
+const popupOpenImage = document.querySelector('.popup_type_open-image');
+const popupImage = popupOpenImage.querySelector('.popup__image');
+const popupImageCaption = popupOpenImage.querySelector('.popup__image-caption');
 const cardsContainer = document.querySelector('.cards');
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__author');
@@ -18,11 +21,17 @@ const formAddCard = popupAddCard.querySelector('.form_type_add-card');
 const placeNameInput = popupAddCard.querySelector('.form__input_type_place-name');
 const linkInput = popupAddCard.querySelector('.form__input_type_link');
 const popUpCloseButtons = document.querySelectorAll('.popup__close-button');
+const formAddValidation = new FormValidator(validationDetails, formAddCard);
+const formEditValidation = new FormValidator(validationDetails, formEditProfile);
+
+const createNewCard = (params, templateSelector) => {
+  const card = new Card(params, templateSelector);
+  return card.generateCard();
+}
 
 const showInitialCards = () => {
   initialCards.forEach(initialCard => {
-    const card = new Card(initialCard, '#card');
-    const cardElement = card.generateCard();
+    const cardElement = createNewCard(initialCard, '#card')
     cardsContainer.append(cardElement);
   });
 }
@@ -38,19 +47,12 @@ function fillProfileFromInput() {
 }
 
 function submitAddForm(evt) {
-  const card = new Card(({placeNameInput, linkInput}), '#card');
-  const cardElement = card.generateCard();
+  const cardElement = createNewCard(({name: placeNameInput.value, link: linkInput.value}), '#card');
   cardsContainer.prepend(cardElement);
   closePopup(evt.target.closest('.popup'));
   formAddCard.reset();
-  setDisabledButtonState(evt.currentTarget, validationDetails.submitButtonSelector, validationDetails.inactiveButtonClass);
+  formAddValidation.disableSubmitButton();
 }
-
-function setDisabledButtonState (formElement, submitButtonSelector, inactiveButtonClass) {
-  const button = formElement.querySelector(submitButtonSelector);
-  button.classList.add(inactiveButtonClass);
-  button.setAttribute('disabled', true);
-};
 
 function fillPopupData() {
   nameInput.value = profileName.textContent;
@@ -100,7 +102,6 @@ popUpCloseButtons.forEach((button) => {
 closeWithOverlay();
 formEditProfile.addEventListener('submit', submitEditForm);
 formAddCard.addEventListener('submit', submitAddForm);
-const formEditValidation = new FormValidator(validationDetails, formEditProfile);
-formEditValidation.enableValidation();
-const formAddValidation = new FormValidator(validationDetails, formAddCard);
 formAddValidation.enableValidation();
+formEditValidation.enableValidation();
+export { popupOpenImage, popupImage, popupImageCaption, openPopup, closePopup};
