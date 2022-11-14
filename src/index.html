@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body>
@@ -15,13 +14,13 @@
 
       <header class="header">
         <a href="#" class="logo">
-          <img src="./images/logo.svg" alt="Логотип" class="logo__image">
+          <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="logo__image">
         </a>
       </header>
 
       <main class="main">
         <section class="profile">
-          <img src="./images/avatar.jpg" alt="Аватар" class="profile__image">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__image">
           <div class="profile__info">
             <h1 class="profile__author">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
@@ -43,11 +42,11 @@
       <div class="popup popup_type_edit-profile">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="#" method="post" class="form form_type_edit-profile" name="formTypeEditProfile" novalidate>
-            <input type="text" class="form__input form__input_type_name" name="formInputTypeName" id="name-input"
+          <form action="#" class="form form_type_edit-profile" name="formTypeEditProfile" novalidate>
+            <input type="text" class="form__input form__input_type_name" name="name" id="name-input"
               value="Жак-Ив Кусто" placeholder="Введите имя:" minlength="2" maxlength="40" required>
             <span class="form__input-error name-input-error"></span>
-            <input type="text" class="form__input form__input_type_job" name="formInputTypeJob" id="job-input"
+            <input type="text" class="form__input form__input_type_job" name="info" id="job-input"
               value="Исследователь океана" placeholder="Введите информацию о себе:" minlength="2" maxlength="200"
               required>
             <span class="form__input-error job-input-error"></span>
@@ -60,11 +59,11 @@
       <div class="popup popup_type_add-card">
         <div class="popup__container">
           <h2 class="popup__title">Новое место</h2>
-          <form action="#" method="post" class="form form_type_add-card" name="formTypeAddCard" novalidate>
-            <input type="text" class="form__input form__input_type_place-name" name="formInputTypePlaceName"
+          <form action="#" class="form form_type_add-card" name="formTypeAddCard" novalidate>
+            <input type="text" class="form__input form__input_type_place-name" name="name"
               id="place-name-input" value="" placeholder="Название" minlength="2" maxlength="30" required>
             <span class="form__input-error place-name-input-error"></span>
-            <input type="url" class="form__input form__input_type_link" name="formInputTypeLink" id="link-input"
+            <input type="url" class="form__input form__input_type_link" name="link" id="link-input"
               value="" placeholder="Ссылка на картинку" required>
             <span class="form__input-error link-input-error"></span>
             <button class="form__submit-button" type="submit">Создать</button>
@@ -94,7 +93,7 @@
       <button class="card__delete page__link-opacity" type="button"></button>
     </li>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
+
 </body>
 
 </html>
