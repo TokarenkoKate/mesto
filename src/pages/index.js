@@ -23,21 +23,22 @@ import Card from '../components/Card';
 import UserInfo from '../components/UserInfo';
 import FormValidator from '../components/FormValidator';
 
+const popupWithImage = new PopupWithImage(popupImageSelector);
+popupWithImage.setEventListeners();
+
 function generateNewCard(cardDetails) {
   const card = new Card(cardDetails, cardSelector, () => {
-    const popupWithImage = new PopupWithImage(popupImageSelector, cardDetails);
-    popupWithImage.open();
+    popupWithImage.open(cardDetails);
   });
   return card.generateCard();
 }
 
 const cardsList = new Section({
-  data: initialCards,
   renderer: (item) => {
     cardsList.addItem(generateNewCard(item));
   }
 }, cardsContainerSelector);
-cardsList.renderItems();
+cardsList.renderItems(initialCards);
 
 const popupAddCard = new PopupWithForm(popupAddCardSelector,
   (formValues) => {
