@@ -20,10 +20,13 @@
 
       <main class="main">
         <section class="profile">
-          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__image">
+          <div class="profile__image-wrapper">
+            <img src="#" alt="Аватар" class="profile__image">
+            <div class="spinner spinner_visible"><i></i></div>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__author">Жак-Ив Кусто</h1>
-            <p class="profile__job">Исследователь океана</p>
+            <h1 class="profile__author" >Загрузка...</h1>
+            <p class="profile__job">Загрузка...</p>
             <button class="profile__edit-btn page__link-opacity" type="button"></button>
           </div>
           <button class="profile__add-btn page__link-opacity" type="button"></button>
@@ -44,12 +47,25 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <form action="#" class="form form_type_edit-profile" name="formTypeEditProfile" novalidate>
             <input type="text" class="form__input form__input_type_name" name="name" id="name-input"
-              value="Жак-Ив Кусто" placeholder="Введите имя:" minlength="2" maxlength="40" required>
+              value="" placeholder="Введите имя:" minlength="2" maxlength="40" required>
             <span class="form__input-error name-input-error"></span>
-            <input type="text" class="form__input form__input_type_job" name="info" id="job-input"
-              value="Исследователь океана" placeholder="Введите информацию о себе:" minlength="2" maxlength="200"
+            <input type="text" class="form__input form__input_type_job" name="about" id="job-input"
+              value="" placeholder="Введите информацию о себе:" minlength="2" maxlength="200"
               required>
             <span class="form__input-error job-input-error"></span>
+            <button class="form__submit-button" type="submit">Сохранить</button>
+          </form>
+          <button class="popup__close-button page__link-opacity" type="button"></button>
+        </div>
+      </div>
+
+      <div class="popup popup_type_edit-avatar">
+        <div class="popup__container">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form action="#" class="form form_type_edit-avatar" name="formTypeEditAvatar" novalidate>
+            <input type="text" class="form__input form__input_type_avatar" name="avatar" id="avatar-input"
+            placeholder="Введите ссылку на новый аватар:" minlength="2" maxlength="200" required>
+            <span class="form__input-error avatar-input-error"></span>
             <button class="form__submit-button" type="submit">Сохранить</button>
           </form>
           <button class="popup__close-button page__link-opacity" type="button"></button>
@@ -80,6 +96,16 @@
         </div>
       </div>
 
+      <div class="popup popup_type_delete-card">
+        <div class="popup__container">
+          <h2 class="popup__title popup__title_type_delete-card">Вы уверены?</h2>
+          <form action="#" class="form form_type_delete-card" name="formTypeDeleteCard">
+            <button class="form__submit-button" type="submit">Да</button>
+          </form>
+          <button class="popup__close-button page__link-opacity" type="button"></button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -88,7 +114,10 @@
       <img src="#" alt="#" class="card__image">
       <div class="card__row">
         <h2 class="card__title">ddd</h2>
-        <button class="card__like" type="button"></button>
+        <div class="card__like-wrapper">
+          <button class="card__like" type="button"></button>
+          <p class="card__like-count">1</p>
+        </div>
       </div>
       <button class="card__delete page__link-opacity" type="button"></button>
     </li>
