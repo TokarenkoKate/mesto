@@ -51,8 +51,16 @@ const userInfo = new UserInfo({
   spinner
 });
 
-// Начальное заполнение контента профиля
-api.getUserInfo()
+// Класс списка карточек
+const cardsList = new Section({
+  renderer: (cardDetails) => {
+    cardsList.appendItem(generateNewCard(cardDetails));
+  }
+}, cardsContainerSelector);
+
+// Начальное заполнение контента профиля и загрузка карточек
+Promise.all([
+  api.getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
     userInfo.renderImageLoading(false);
@@ -60,7 +68,12 @@ api.getUserInfo()
   })
   .catch((err) => {
     console.log(err);
-  });
+  }),
+  api.getInitialCards()
+  .then((cards) => {
+    cardsList.renderItems(cards);
+  })
+]);
 
 // Модальное окно редактирования информации о пользователе
 const popupEditProfile = new PopupWithForm(popupEditSelector, submitButtonSelector,
@@ -84,7 +97,7 @@ function fillPopupData(data) {
   jobInput.value = data.about;
 }
 
-// Модальное окно редактирование аватара
+// Модальное окно редактирования аватара
 const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, submitButtonSelector,
   (formValues, renderLoading, closeFunction) => {
     renderLoading();
@@ -105,22 +118,6 @@ popupEditAvatar.setEventListeners();
 
 //-------------Карточки--------------//
 
-// Создание списка карточек
-const cardsList = new Section({
-  renderer: (cardDetails) => {
-    cardsList.appendItem(generateNewCard(cardDetails));
-  }
-}, cardsContainerSelector);
-
-// Первоначатальная загрузка карточек
-api.getInitialCards()
-  .then((cards) => {
-    cardsList.renderItems(cards);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 // Функция создания карточки
 function generateNewCard(cardDetails) {
   const card = new Card(
@@ -132,20 +129,24 @@ function generateNewCard(cardDetails) {
       popupWithImage.open(cardDetails);
     },
     // Обработчик добавления лайка
-    (currentCardId, likesCount) => {
+    (currentCardId, likesCount, isLiked, toggleButtonClass) => {
       api.addLike(currentCardId)
         .then((data) => {
           likesCount.textContent = data.likes.length;
+          isLiked();
+          toggleButtonClass();
         })
         .catch((err) => {
           console.log(err);
         })
     },
     // Обработчик удаления лайка
-    (currentCardId, likesCount) => {
+    (currentCardId, likesCount, isLiked, toggleButtonClass) => {
       api.removeLike(currentCardId)
         .then((data) => {
           likesCount.textContent = data.likes.length;
+          isLiked();
+          toggleButtonClass();
         })
         .catch((err) => {
           console.log(err);

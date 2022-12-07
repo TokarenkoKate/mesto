@@ -24,19 +24,15 @@ export default class Card {
 
   _like = () => {
     if (this._isLiked) {
-      this._isLiked = false;
-      this._toggleButtonClass(false);
-      this.handleRemoveLike(this._currentCardId, this._likesCount);
+      this.handleRemoveLike(this._currentCardId, this._likesCount, () => this._isLiked = false, () => this._toggleButtonClass(false));
     } else {
-      this._isLiked = true;
-      this._toggleButtonClass(true);
-      this.handleAddLike(this._currentCardId, this._likesCount);
+      this.handleAddLike(this._currentCardId, this._likesCount, () => this._isLiked = true, () => this._toggleButtonClass(true));
     }
   }
 
   _checkLike() {
     if (this._likes.length) {
-      this._likes.forEach(like => {
+      this._likes.some(like => {
         if (like._id === this._pageOwnerId) {
           return this._isLiked = true;
         }
